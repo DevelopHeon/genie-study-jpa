@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Entity(name = "artist")
 @Getter
 @ToString
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class Artist extends Base {

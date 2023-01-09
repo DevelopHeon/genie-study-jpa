@@ -6,9 +6,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @since       2023.01.09
@@ -18,7 +17,7 @@ import java.util.Set;
 @Entity(name = "album")
 @Getter
 @ToString
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class Album extends Base {
@@ -28,7 +27,7 @@ public class Album extends Base {
     @Column(name = "album_id", nullable = false)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(nullable = false)
+    @JoinColumn(name = "artist_id")
     private Artist artist;
     @Column(length = 100, nullable = false)
     private String name;
@@ -41,7 +40,7 @@ public class Album extends Base {
 
     @ElementCollection
     @CollectionTable(name = "sound_track"
-                   , joinColumns = @JoinColumn(name = "sound_track_id", referencedColumnName = "id"))
-    private Set<SoundTrack> soundTracks = new LinkedHashSet<>();
+                   , joinColumns = @JoinColumn(name = "album_id"))
+    private List<SoundTrack> soundTracks = new ArrayList<>();
 
 }

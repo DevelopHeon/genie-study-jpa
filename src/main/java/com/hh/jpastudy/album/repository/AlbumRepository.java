@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @since       2023.01.09
- * @author      tony
+ * @author      sony
  * @description album repository
  **********************************************************************************************************************/
 public interface AlbumRepository extends JpaRepository<Album, Long> {
