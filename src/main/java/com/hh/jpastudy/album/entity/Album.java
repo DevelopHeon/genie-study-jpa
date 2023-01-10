@@ -10,14 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @since       2023.01.09
- * @author      sony
+ * @author sony
  * @description album
+ * @since 2023.01.09
  **********************************************************************************************************************/
 @Entity(name = "album")
 @Getter
+@Setter
 @ToString
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class Album extends Base {
@@ -40,7 +41,8 @@ public class Album extends Base {
 
     @ElementCollection
     @CollectionTable(name = "sound_track"
-                   , joinColumns = @JoinColumn(name = "album_id"))
+            , joinColumns = @JoinColumn(name = "album_id")
+    )
     private List<SoundTrack> soundTracks = new ArrayList<>();
 
 }

@@ -3,7 +3,7 @@ package com.hh.jpastudy.album.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -16,6 +16,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 public class SoundTrack {
     @Column(nullable = false)
     private int orderNo;

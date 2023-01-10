@@ -1,10 +1,13 @@
 package com.hh.jpastudy.album.mapper;
 
 import com.hh.jpastudy.album.entity.Album;
-import com.hh.jpastudy.album.form.AlbumForm;
 import com.hh.jpastudy.album.form.AlbumForm.Request.Add;
+import com.hh.jpastudy.album.form.AlbumForm.Request.Modify;
+import com.hh.jpastudy.album.form.AlbumForm.Response.FindAll;
 import com.hh.jpastudy.album.form.AlbumForm.Response.FindOne;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
@@ -15,9 +18,11 @@ import org.mapstruct.factory.Mappers;
  **********************************************************************************************************************/
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AlbumMapper {
-
     AlbumMapper mapper = Mappers.getMapper(AlbumMapper.class);
-
     Album toAlbum(Add form);
+    Album toAlbum(Long id, Modify form);
     FindOne toFindOne(Album entity);
+    FindAll toFindAll(Album entity);
+    @Mapping(target = "id", ignore = true)
+    Album modify(Album source, @MappingTarget Album target);
 }

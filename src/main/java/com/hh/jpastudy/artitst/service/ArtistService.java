@@ -36,8 +36,8 @@ public class ArtistService {
         return artistRepository.save(artist);
     }
 
-    public Artist modify(Long id, Artist artist) {
-        return mapper.modify(artist, get(id));
+    public Artist modify(Artist artist) {
+        return artistRepository.save(artist);
     }
 
     public void remove(Long id) {
