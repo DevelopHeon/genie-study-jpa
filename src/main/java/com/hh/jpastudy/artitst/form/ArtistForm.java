@@ -1,5 +1,6 @@
 package com.hh.jpastudy.artitst.form;
 
+import com.hh.jpastudy.artitst.enumerate.Agency;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -42,8 +43,7 @@ public class ArtistForm {
             @NotNull
             private LocalDate birth;
 
-            @Length(max = 255)
-            private String agency;
+            private Agency agency;
 
             @Length(max = 255)
             @NotBlank
@@ -67,8 +67,7 @@ public class ArtistForm {
             @NotNull
             private LocalDate birth;
 
-            @Length(max = 255)
-            private String agency;
+            private Agency agency;
 
             @Length(max = 255)
             @NotBlank
@@ -87,7 +86,7 @@ public class ArtistForm {
             private Long id;
             private String name;
             private LocalDate birth;
-            private String agency;
+            private Agency agency;
             private String nationality;
             private String description;
             private String createdBy;
@@ -103,7 +102,7 @@ public class ArtistForm {
             private Long id;
             private String name;
             private LocalDate birth;
-            private String agency;
+            private Agency agency;
             private String nationality;
             private String description;
             private String createdBy;

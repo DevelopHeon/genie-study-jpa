@@ -2,6 +2,7 @@ package com.hh.jpastudy.artitst.service;
 
 import com.hh.jpastudy.album.repository.AlbumRepository;
 import com.hh.jpastudy.artitst.entity.Artist;
+import com.hh.jpastudy.artitst.exception.AlbumExistException;
 import com.hh.jpastudy.artitst.form.ArtistForm.Request.Find;
 import com.hh.jpastudy.artitst.repository.ArtistRepository;
 import com.hh.jpastudy.common.error.ResourceNotFoundException;
@@ -32,7 +33,8 @@ public class ArtistService {
 
     @Transactional(readOnly = true)
     public Artist get(Long id) {
-        return artistRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("아티스트를 찾을 수 없습니다."));
+        return artistRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("아티스트를 찾을 수 없습니다."));
     }
 
     public Artist add(Artist artist) {
@@ -46,14 +48,15 @@ public class ArtistService {
     }
 
     public void remove(Long id) {
+        get(id);
         existAlbum(id);
         artistRepository.deleteById(id);
     }
 
     private void existAlbum(Long id) {
-        Long artistCount = albumRepository.findByArtistExist(id);
+        Long artistCount = albumRepository.findByAlbumExist(id);
         if (artistCount > 0) {
-            throw new ResourceNotFoundException("아티스트의 앨범이 존재합니다.");
+            throw new AlbumExistException("아티스트의 앨범이 존재합니다.");
         }
     }
 }

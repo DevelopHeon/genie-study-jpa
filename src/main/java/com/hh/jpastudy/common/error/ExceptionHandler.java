@@ -1,5 +1,6 @@
 package com.hh.jpastudy.common.error;
 
+import com.hh.jpastudy.artitst.exception.AlbumExistException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -16,6 +17,16 @@ public class ExceptionHandler {
 
     @org.springframework.web.bind.annotation.ExceptionHandler(ResourceNotFoundException.class)
     protected ResponseEntity<?> handleNotFoundException(ResourceNotFoundException e) {
+        ExceptionForm exceptionForm = ExceptionForm.builder()
+                .message(e.getMessage())
+                .exceptionCode("404 ERROR")
+                .build();
+
+        return new ResponseEntity<>(exceptionForm, HttpStatus.NOT_FOUND);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(AlbumExistException.class)
+    protected ResponseEntity<?> handleAlbumExistException(AlbumExistException e) {
         ExceptionForm exceptionForm = ExceptionForm.builder()
                 .message(e.getMessage())
                 .exceptionCode("400 ERROR")

@@ -200,6 +200,7 @@ public class AlbumForm {
         @Data
         public static class FindAll {
 
+            private Long id;
             private Artist artist;
             private String name;
             private LocalDate releaseDate;

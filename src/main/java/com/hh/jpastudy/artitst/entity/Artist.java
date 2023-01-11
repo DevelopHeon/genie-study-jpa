@@ -1,5 +1,6 @@
 package com.hh.jpastudy.artitst.entity;
 
+import com.hh.jpastudy.artitst.enumerate.Agency;
 import com.hh.jpastudy.common.entity.Base;
 import lombok.*;
 
@@ -31,8 +32,9 @@ public class Artist extends Base {
     @Column(nullable = false)
     private LocalDate birth;
 
-    @Column(length = 100)
-    private String agency;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10)
+    private Agency agency;
 
     @Column(nullable = false)
     private String nationality;

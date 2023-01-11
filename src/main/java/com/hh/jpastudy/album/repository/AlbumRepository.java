@@ -13,6 +13,6 @@ import org.springframework.data.repository.query.Param;
 public interface AlbumRepository extends JpaRepository<Album, Long>, AlbumCustomRepository {
 
     @Query("select count(a.artist) from album a where a.artist.id = :id")
-    Long findByArtistExist(@Param("id") Long id);
+    Long findByAlbumExist(@Param("id") Long id);
 
 }

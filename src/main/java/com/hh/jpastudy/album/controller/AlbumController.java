@@ -18,9 +18,9 @@ import javax.validation.Valid;
 import static com.hh.jpastudy.album.mapper.AlbumMapper.mapper;
 
 /**
- * @since       2023.01.09
- * @author      sony
+ * @author sony
  * @description album controller
+ * @since 2023.01.09
  **********************************************************************************************************************/
 @RestController
 @RequiredArgsConstructor
@@ -28,22 +28,27 @@ import static com.hh.jpastudy.album.mapper.AlbumMapper.mapper;
 @Slf4j
 public class AlbumController {
     private final AlbumService albumService;
+
     @GetMapping("/albums")
     public Page<FindAll> getAll(Find find, Pageable pageable) {
         return albumService.getAll(find, pageable).map(mapper::toFindAll);
     }
+
     @GetMapping("/albums/{id}")
     public FindOne get(@PathVariable Long id) {
         return mapper.toFindOne(albumService.get(id));
     }
+
     @PostMapping("/albums")
     public FindOne add(@Valid @RequestBody Add add) {
         return mapper.toFindOne(albumService.add(mapper.toAlbum(add)));
     }
+
     @PutMapping("/albums/{id}")
     public Long modify(@PathVariable Long id, @Valid @RequestBody Modify modify) {
         return albumService.modify(mapper.toAlbum(id, modify));
     }
+
     @DeleteMapping("/albums/{id}")
     public void remove(@PathVariable Long id) {
         albumService.remove(id);

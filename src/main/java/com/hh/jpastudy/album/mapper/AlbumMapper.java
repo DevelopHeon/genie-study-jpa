@@ -6,8 +6,6 @@ import com.hh.jpastudy.album.form.AlbumForm.Request.Modify;
 import com.hh.jpastudy.album.form.AlbumForm.Response.FindAll;
 import com.hh.jpastudy.album.form.AlbumForm.Response.FindOne;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
@@ -23,6 +21,4 @@ public interface AlbumMapper {
     Album toAlbum(Long id, Modify form);
     FindOne toFindOne(Album entity);
     FindAll toFindAll(Album entity);
-    @Mapping(target = "id", ignore = true)
-    Album modify(Album source, @MappingTarget Album target);
 }
