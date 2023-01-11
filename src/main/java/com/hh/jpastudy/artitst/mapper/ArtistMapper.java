@@ -20,6 +20,4 @@ public interface ArtistMapper {
     FindAll toFindAll(Artist entity);
     Artist toArtist(Add form);
     Artist toArtist(Long id, Modify form);
-    @Mapping(target = "id", ignore = true)
-    Artist modify(Artist source, @MappingTarget Artist target);
 }

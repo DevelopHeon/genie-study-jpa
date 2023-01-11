@@ -3,9 +3,11 @@ package com.hh.jpastudy.album.form;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,15 +38,25 @@ public class AlbumForm {
         @AllArgsConstructor
         public static class Add {
 
-            @NotNull
+            @Valid
             private Artist artist;
+
             @NotBlank
+            @Length(max = 100)
             private String name;
+
             @NotNull
             private LocalDate releaseDate;
+
+            @Length(max = 100)
             private String genre;
+
+            @Length(max = 1000)
             private String description;
+
+            @Valid
             private List<SoundTrack> soundTracks = new ArrayList<>();
+
             @Getter
             @Setter
             @Builder
@@ -53,8 +65,10 @@ public class AlbumForm {
             @AllArgsConstructor
             public static class Artist {
 
+                @NotNull
                 private Long id;
 
+                @NotBlank
                 private String name;
             }
 
@@ -65,10 +79,20 @@ public class AlbumForm {
             @NoArgsConstructor
             @AllArgsConstructor
             public static class SoundTrack {
+
+                @NotNull
                 private int orderNo;
+
+                @NotBlank
+                @Length(max = 100)
                 private String name;
+
+                @NotBlank
                 private String playTime;
+
+                @NotNull
                 private Boolean exposure;
+
             }
         }
 
@@ -79,11 +103,24 @@ public class AlbumForm {
         @NoArgsConstructor
         @AllArgsConstructor
         public static class Modify {
+
+            @Valid
             private Artist artist;
+
+            @NotBlank
+            @Length(max = 100)
             private String name;
+
+            @NotNull
             private LocalDate releaseDate;
+
+            @Length(max = 100)
             private String genre;
+
+            @Length(max = 1000)
             private String description;
+
+            @Valid
             private List<SoundTrack> soundTracks = new ArrayList<>();
 
             @Getter
@@ -93,8 +130,13 @@ public class AlbumForm {
             @NoArgsConstructor
             @AllArgsConstructor
             public static class Artist{
+
+                @NotNull
                 private Long id;
+
+                @NotBlank
                 private String name;
+
             }
 
             @Getter
@@ -104,10 +146,20 @@ public class AlbumForm {
             @NoArgsConstructor
             @AllArgsConstructor
             public static class SoundTrack {
+
+                @NotNull
                 private int orderNo;
+
+                @NotBlank
+                @Length(max = 100)
                 private String name;
+
+                @NotBlank
                 private String playTime;
+
+                @NotNull
                 private Boolean exposure;
+
             }
         }
 
@@ -125,7 +177,9 @@ public class AlbumForm {
             private String description;
             private List<SoundTrack> soundTracks = new ArrayList<>();
             private String createdBy;
-            private String createdAt;
+            private String lastModifiedBy;
+            private LocalDateTime modifiedAt;
+            private LocalDateTime createdAt;
 
             @Data
             public static class Artist {
@@ -152,7 +206,10 @@ public class AlbumForm {
             private String genre;
             private String description;
             private String createdBy;
-            private String createdAt;
+            private String lastModifiedBy;
+            private LocalDateTime modifiedAt;
+            private LocalDateTime createdAt;
+
             @Data
             public static class Artist {
                 private Long id;

@@ -1,7 +1,6 @@
 package com.hh.jpastudy.album.repository;
 
 import com.hh.jpastudy.album.entity.Album;
-import com.hh.jpastudy.album.entity.QSoundTrack;
 import com.hh.jpastudy.album.form.AlbumForm.Request.Find;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -31,13 +30,27 @@ public class AlbumCustomRepositoryImpl implements AlbumCustomRepository{
     @Override
     public Page<Album> findAll(Find find, Pageable pageable) {
         List<Album> query = jpaQueryFactory.selectFrom(album)
-                .join(artist)
-                .on(album.artist.id.eq(artist.id))
+                .innerJoin(album.artist, artist)
+                .fetchJoin()
                 .where(eqName(find))
                 .orderBy(album.id.desc())
                 .fetch();
 
         return new PageImpl<>(query, pageable, query.stream().count());
+    }
+
+    @Override
+    public Optional<Album> findByAlbumWithTrack(Long id) {
+        Album query = jpaQueryFactory.selectFrom(album)
+                .innerJoin(album.artist, artist)
+                .fetchJoin()
+                .leftJoin(album.soundTracks, soundTrack)
+                .fetchJoin()
+                .where(album.id.eq(id))
+                .orderBy(soundTrack.orderNo.asc())
+                .fetchOne();
+
+        return Optional.ofNullable(query);
     }
 
     private BooleanExpression eqName(Find find) {

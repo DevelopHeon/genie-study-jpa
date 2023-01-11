@@ -39,4 +39,5 @@ public class Artist extends Base {
 
     @Column(length = 1000)
     private String description;
+
 }

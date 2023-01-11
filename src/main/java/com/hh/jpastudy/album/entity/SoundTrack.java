@@ -18,12 +18,17 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class SoundTrack {
+
     @Column(nullable = false)
     private int orderNo;
+
     @Column(nullable = false, length = 100)
     private String name;
+
     @Column(nullable = false)
     private String playTime;
+
     @Column(nullable = false)
     private Boolean exposure;
+
 }

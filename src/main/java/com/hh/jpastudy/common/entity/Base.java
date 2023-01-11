@@ -25,11 +25,14 @@ public class Base {
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt;
+
     @LastModifiedDate
     private LocalDateTime modifiedAt;
+
     @CreatedBy
     @Column(updatable = false)
     private String createdBy;
+
     @LastModifiedBy
     private String lastModifiedBy;
 

@@ -43,8 +43,8 @@ public class ArtistController {
     }
 
     @PutMapping("/artists/{id}")
-    public FindOne modify(@PathVariable Long id, @Valid @RequestBody Modify modify) {
-        return mapper.toFindOne(artistService.modify(mapper.toArtist(id, modify)));
+    public Long modify(@PathVariable Long id, @Valid @RequestBody Modify modify) {
+        return artistService.modify(mapper.toArtist(id, modify));
     }
 
     @DeleteMapping("/artists/{id}")

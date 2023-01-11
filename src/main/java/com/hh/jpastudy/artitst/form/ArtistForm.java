@@ -6,11 +6,12 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
- * @since       2023.01.09
- * @author      sony
+ * @author sony
  * @description artist form
+ * @since 2023.01.09
  **********************************************************************************************************************/
 public class ArtistForm {
 
@@ -37,16 +38,21 @@ public class ArtistForm {
             @Length(max = 100)
             @NotBlank
             private String name;
+
             @NotNull
             private LocalDate birth;
+
             @Length(max = 255)
             private String agency;
+
             @Length(max = 255)
             @NotBlank
             private String nationality;
+
             @Length(max = 1000)
             private String description;
         }
+
         @Getter
         @Setter
         @Builder
@@ -57,13 +63,17 @@ public class ArtistForm {
             @Length(max = 100)
             @NotBlank
             private String name;
+
             @NotNull
             private LocalDate birth;
+
             @Length(max = 255)
             private String agency;
+
             @Length(max = 255)
             @NotBlank
             private String nationality;
+
             @Length(max = 1000)
             private String description;
         }
@@ -75,40 +85,31 @@ public class ArtistForm {
         public static class FindAll {
 
             private Long id;
-
             private String name;
-
             private LocalDate birth;
-
             private String agency;
-
             private String nationality;
-
             private String description;
-
             private String createdBy;
-
-            private String createdAt;
+            private String lastModifiedBy;
+            private LocalDateTime modifiedAt;
+            private LocalDateTime createdAt;
 
         }
 
         @Data
         public static class FindOne {
+
             private Long id;
-
             private String name;
-
             private LocalDate birth;
-
             private String agency;
-
             private String nationality;
-
             private String description;
-
             private String createdBy;
-
-            private String createdAt;
+            private String lastModifiedBy;
+            private LocalDateTime modifiedAt;
+            private LocalDateTime createdAt;
         }
     }
 

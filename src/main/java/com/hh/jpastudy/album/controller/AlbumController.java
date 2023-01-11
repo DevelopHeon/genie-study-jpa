@@ -41,8 +41,8 @@ public class AlbumController {
         return mapper.toFindOne(albumService.add(mapper.toAlbum(add)));
     }
     @PutMapping("/albums/{id}")
-    public FindOne modify(@PathVariable Long id, @Valid @RequestBody Modify modify) {
-        return mapper.toFindOne(albumService.modify(mapper.toAlbum(id, modify)));
+    public Long modify(@PathVariable Long id, @Valid @RequestBody Modify modify) {
+        return albumService.modify(mapper.toAlbum(id, modify));
     }
     @DeleteMapping("/albums/{id}")
     public void remove(@PathVariable Long id) {
