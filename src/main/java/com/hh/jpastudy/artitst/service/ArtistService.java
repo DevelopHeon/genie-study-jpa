@@ -54,7 +54,7 @@ public class ArtistService {
     }
 
     private void existAlbum(Long id) {
-        Long artistCount = albumRepository.findByAlbumExist(id);
+        Long artistCount = albumRepository.findExistByAlbum(id);
         if (artistCount > 0) {
             throw new AlbumExistException("아티스트의 앨범이 존재합니다.");
         }

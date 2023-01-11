@@ -1,7 +1,7 @@
 package com.hh.jpastudy.artitst.repository;
 
 import com.hh.jpastudy.artitst.entity.Artist;
-import com.hh.jpastudy.artitst.form.ArtistForm;
+import com.hh.jpastudy.artitst.form.ArtistForm.Request.Find;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,5 +11,5 @@ import org.springframework.data.domain.Pageable;
  * @description artist custom repository
  **********************************************************************************************************************/
 public interface ArtistCustomRepository {
-    Page<Artist> findAll(ArtistForm.Request.Find find, Pageable pageable);
+    Page<Artist> findAll(Find find, Pageable pageable);
 }
