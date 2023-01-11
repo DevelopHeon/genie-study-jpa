@@ -54,8 +54,8 @@ public class AlbumCustomRepositoryImpl implements AlbumCustomRepository{
     }
 
     private BooleanExpression eqName(Find find) {
-        if (StringUtils.hasText(find.getName())) {
-            return album.name.contains(find.getName());
+        if (StringUtils.hasText(find.getTitle())) {
+            return album.title.contains(find.getTitle());
         }
         return null;
     }

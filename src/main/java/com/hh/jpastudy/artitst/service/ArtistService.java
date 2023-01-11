@@ -5,7 +5,7 @@ import com.hh.jpastudy.artitst.entity.Artist;
 import com.hh.jpastudy.artitst.exception.AlbumExistException;
 import com.hh.jpastudy.artitst.form.ArtistForm.Request.Find;
 import com.hh.jpastudy.artitst.repository.ArtistRepository;
-import com.hh.jpastudy.common.error.ResourceNotFoundException;
+import com.hh.jpastudy.common.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

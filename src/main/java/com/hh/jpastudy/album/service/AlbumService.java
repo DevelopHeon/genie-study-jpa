@@ -1,19 +1,14 @@
 package com.hh.jpastudy.album.service;
 
 import com.hh.jpastudy.album.entity.Album;
-import com.hh.jpastudy.album.form.AlbumForm;
 import com.hh.jpastudy.album.form.AlbumForm.Request.Find;
-import com.hh.jpastudy.album.form.AlbumForm.Response.FindOne;
-import com.hh.jpastudy.album.mapper.AlbumMapper;
 import com.hh.jpastudy.album.repository.AlbumRepository;
-import com.hh.jpastudy.common.error.ResourceNotFoundException;
+import com.hh.jpastudy.common.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import static com.hh.jpastudy.album.mapper.AlbumMapper.mapper;
 
 
 /**

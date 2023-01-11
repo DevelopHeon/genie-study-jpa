@@ -27,7 +27,7 @@ public class AlbumForm {
         @AllArgsConstructor
         public static class Find {
             @Length(max = 100)
-            private String name;
+            private String title;
         }
 
         @Getter
@@ -43,7 +43,7 @@ public class AlbumForm {
 
             @NotBlank
             @Length(max = 100)
-            private String name;
+            private String title;
 
             @NotNull
             private LocalDate releaseDate;
@@ -85,7 +85,7 @@ public class AlbumForm {
 
                 @NotBlank
                 @Length(max = 100)
-                private String name;
+                private String title;
 
                 @NotBlank
                 private String playTime;
@@ -109,7 +109,7 @@ public class AlbumForm {
 
             @NotBlank
             @Length(max = 100)
-            private String name;
+            private String title;
 
             @NotNull
             private LocalDate releaseDate;
@@ -152,7 +152,7 @@ public class AlbumForm {
 
                 @NotBlank
                 @Length(max = 100)
-                private String name;
+                private String title;
 
                 @NotBlank
                 private String playTime;
@@ -171,7 +171,7 @@ public class AlbumForm {
 
             private Long id;
             private Artist artist;
-            private String name;
+            private String title;
             private LocalDate releaseDate;
             private String genre;
             private String description;
@@ -190,7 +190,7 @@ public class AlbumForm {
             @Data
             public static class SoundTrack {
                 private int orderNo;
-                private String name;
+                private String title;
                 private String playTime;
                 private Boolean exposure;
             }
@@ -202,7 +202,7 @@ public class AlbumForm {
 
             private Long id;
             private Artist artist;
-            private String name;
+            private String title;
             private LocalDate releaseDate;
             private String genre;
             private String description;

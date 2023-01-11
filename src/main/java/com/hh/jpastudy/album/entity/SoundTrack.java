@@ -23,7 +23,7 @@ public class SoundTrack {
     private int orderNo;
 
     @Column(nullable = false, length = 100)
-    private String name;
+    private String title;
 
     @Column(nullable = false)
     private String playTime;

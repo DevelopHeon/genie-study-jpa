@@ -33,7 +33,7 @@ public class Album extends Base {
     private Artist artist;
 
     @Column(length = 100, nullable = false)
-    private String name;
+    private String title;
 
     @Column(nullable = false)
     private LocalDate releaseDate;

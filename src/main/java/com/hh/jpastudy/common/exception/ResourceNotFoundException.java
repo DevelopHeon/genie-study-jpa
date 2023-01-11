@@ -1,6 +1,4 @@
-package com.hh.jpastudy.common.error;
-
-import org.springframework.web.bind.annotation.ExceptionHandler;
+package com.hh.jpastudy.common.exception;
 
 /**
  * @since       2023.01.11
