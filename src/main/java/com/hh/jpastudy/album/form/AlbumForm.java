@@ -2,19 +2,23 @@ package com.hh.jpastudy.album.form;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.util.CollectionUtils;
 
 import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
- * @since       2023.01.09
- * @author      sony
+ * @author sony
  * @description album form
+ * @since 2023.01.09
  **********************************************************************************************************************/
 public class AlbumForm {
 
@@ -81,7 +85,7 @@ public class AlbumForm {
 
                 @NotNull
                 @Min(1)
-                private int orderNo;
+                private Integer orderNo;
 
                 @NotBlank
                 @Length(max = 100)
@@ -94,6 +98,15 @@ public class AlbumForm {
                 @NotNull
                 private Boolean exposure;
 
+            }
+
+            @AssertTrue(message = "음원의 순서는 중복될 수 없습니다.")
+            public boolean isOrderDuplicateValidate() {
+                if (CollectionUtils.isEmpty(soundTracks)) {
+                    return true;
+                }
+                return soundTracks.stream().map(Add.SoundTrack::getOrderNo)
+                        .allMatch(new HashSet<>()::add);
             }
         }
 
@@ -131,7 +144,7 @@ public class AlbumForm {
             @ToString
             @NoArgsConstructor
             @AllArgsConstructor
-            public static class Artist{
+            public static class Artist {
 
                 @NotNull
                 private Long id;
@@ -147,7 +160,8 @@ public class AlbumForm {
             public static class SoundTrack {
 
                 @NotNull
-                private int orderNo;
+                @Min(1)
+                private Integer orderNo;
 
                 @NotBlank
                 @Length(max = 100)
@@ -158,9 +172,17 @@ public class AlbumForm {
                 private String playTime;
 
                 @NotNull
-                @Min(1)
                 private Boolean exposure;
 
+            }
+
+            @AssertTrue(message = "음원의 순서는 중복될 수 없습니다.")
+            public boolean isOrderDuplicateValidate() {
+                if (CollectionUtils.isEmpty(soundTracks)) {
+                    return true;
+                }
+                return soundTracks.stream().map(SoundTrack::getOrderNo)
+                        .allMatch(new HashSet<>()::add);
             }
         }
 
@@ -190,7 +212,7 @@ public class AlbumForm {
 
             @Data
             public static class SoundTrack {
-                private int orderNo;
+                private Integer orderNo;
                 private String title;
                 private String playTime;
                 private Boolean exposure;
@@ -219,7 +241,5 @@ public class AlbumForm {
             }
 
         }
-
     }
-
 }

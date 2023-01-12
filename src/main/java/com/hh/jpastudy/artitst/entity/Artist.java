@@ -17,7 +17,6 @@ import java.util.List;
  **********************************************************************************************************************/
 @Entity(name = "artist")
 @Getter
-@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor

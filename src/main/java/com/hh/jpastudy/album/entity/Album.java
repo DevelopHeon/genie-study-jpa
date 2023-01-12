@@ -16,7 +16,6 @@ import java.util.List;
  **********************************************************************************************************************/
 @Entity(name = "album")
 @Getter
-@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor

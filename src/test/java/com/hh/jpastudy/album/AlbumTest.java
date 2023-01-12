@@ -150,4 +150,41 @@ public class AlbumTest extends BaseTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    @DisplayName("음원 순서 중복 테스트")
+    void duplicated_sound_track() throws Exception {
+        List<Modify.SoundTrack> soundTracks = new ArrayList<>();
+
+        for (int i = 1; i < 5; i++) {
+
+            Modify.SoundTrack track = Modify.SoundTrack
+                    .builder()
+                    .orderNo(1)
+                    .title("음원 수정" + i)
+                    .playTime("03:30")
+                    .exposure(true)
+                    .build();
+
+            soundTracks.add(track);
+
+        }
+        Modify modify = Modify.builder()
+                .artist(Modify.Artist
+                        .builder()
+                        .id(artistId)
+                        .build())
+                .title("앨범 수정")
+                .releaseDate(LocalDate.now())
+                .genre("발라드")
+                .description("설명 수정")
+                .soundTracks(soundTracks)
+                .build();
+
+        mockMvc.perform(put("/api/albums/{id}", id)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(toJson(modify)))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
+
 }

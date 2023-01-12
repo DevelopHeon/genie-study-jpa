@@ -1,5 +1,6 @@
 package com.hh.jpastudy.common.exception;
 
+import com.hh.jpastudy.artitst.exception.ArtistByAlbumExist;
 import com.hh.jpastudy.common.exception.ExceptionForm.ErrorResponse;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -28,8 +29,8 @@ public class ExceptionsHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    protected ResponseEntity<?> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+    @ExceptionHandler(ArtistByAlbumExist.class)
+    protected ResponseEntity<?> handleArtistByAlbumExist(ArtistByAlbumExist e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 

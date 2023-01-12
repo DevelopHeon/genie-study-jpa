@@ -2,6 +2,7 @@ package com.hh.jpastudy.artitst.service;
 
 import com.hh.jpastudy.album.repository.AlbumRepository;
 import com.hh.jpastudy.artitst.entity.Artist;
+import com.hh.jpastudy.artitst.exception.ArtistByAlbumExist;
 import com.hh.jpastudy.artitst.form.ArtistForm.Request.Find;
 import com.hh.jpastudy.artitst.repository.ArtistRepository;
 import com.hh.jpastudy.common.exception.ResourceNotFoundException;
@@ -50,7 +51,7 @@ public class ArtistService {
     public void remove(Long id) {
         get(id);
         if (albumRepository.existsByArtistId(id)) {
-            throw new DataIntegrityViolationException("아티스트의 앨범이 존재하여 삭제할 수 없습니다..");
+            throw new ArtistByAlbumExist("아티스트의 앨범이 존재하여 삭제할 수 없습니다.");
         }
         artistRepository.deleteById(id);
     }

@@ -2,7 +2,8 @@ package com.hh.jpastudy.album.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
 /**
  * @since       2023.01.09
@@ -14,12 +15,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Getter
-@Setter
 @ToString
 public class SoundTrack {
 
     @Column(nullable = false)
-    private int orderNo;
+    private Integer orderNo;
 
     @Column(nullable = false, length = 100)
     private String title;
