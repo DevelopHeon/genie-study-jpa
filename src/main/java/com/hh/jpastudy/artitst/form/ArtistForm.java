@@ -30,7 +30,7 @@ public class ArtistForm {
 
         @Getter
         @Setter
-        @Builder
+        @Builder(toBuilder = true)
         @ToString
         @NoArgsConstructor
         @AllArgsConstructor

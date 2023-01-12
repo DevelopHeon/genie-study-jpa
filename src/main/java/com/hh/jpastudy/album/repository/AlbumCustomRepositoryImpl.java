@@ -33,6 +33,8 @@ public class AlbumCustomRepositoryImpl implements AlbumCustomRepository{
                 .innerJoin(album.artist, artist)
                 .fetchJoin()
                 .where(eqName(find))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .orderBy(album.id.desc())
                 .fetch();
 

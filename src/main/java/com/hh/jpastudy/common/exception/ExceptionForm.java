@@ -27,7 +27,6 @@ public class ExceptionForm {
     public static class ErrorResponse {
 
         private String field;
-
         private String message;
     }
 

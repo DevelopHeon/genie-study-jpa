@@ -8,7 +8,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,7 +54,7 @@ public class AlbumForm {
             private String description;
 
             @Valid
-            private List<SoundTrack> soundTracks = new ArrayList<>();
+            private List<SoundTrack> soundTracks;
 
             @Getter
             @Setter
@@ -68,8 +67,6 @@ public class AlbumForm {
                 @NotNull
                 private Long id;
 
-                @NotBlank
-                private String name;
             }
 
             @Getter
@@ -121,7 +118,7 @@ public class AlbumForm {
             private String description;
 
             @Valid
-            private List<SoundTrack> soundTracks = new ArrayList<>();
+            private List<SoundTrack> soundTracks;
 
             @Getter
             @Setter
@@ -133,9 +130,6 @@ public class AlbumForm {
 
                 @NotNull
                 private Long id;
-
-                @NotBlank
-                private String name;
 
             }
 
@@ -175,7 +169,7 @@ public class AlbumForm {
             private LocalDate releaseDate;
             private String genre;
             private String description;
-            private List<SoundTrack> soundTracks = new ArrayList<>();
+            private List<SoundTrack> soundTracks;
             private String createdBy;
             private String lastModifiedBy;
             private LocalDateTime modifiedAt;

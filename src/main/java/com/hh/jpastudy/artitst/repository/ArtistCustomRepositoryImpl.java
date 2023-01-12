@@ -29,6 +29,8 @@ public class ArtistCustomRepositoryImpl implements ArtistCustomRepository{
         List<Artist> query = jpaQueryFactory.selectFrom(artist)
                 .where(eqName(find))
                 .orderBy(artist.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
 
         return new PageImpl<>(query, pageable, query.stream().count());
