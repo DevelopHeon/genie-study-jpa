@@ -15,5 +15,5 @@ import java.util.Optional;
  **********************************************************************************************************************/
 public interface AlbumCustomRepository {
     Page<Album> findAll(Find find, Pageable pageable);
-    Optional<Album> findByAlbumWithTrack(Long id);
+    Optional<Album> findAlbumAndTracks(Long id);
 }

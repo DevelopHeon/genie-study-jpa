@@ -141,7 +141,5 @@ public class ArtistTest extends BaseTest {
         mockMvc.perform(delete("/api/artists/{id}", id))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
-
     }
-
 }

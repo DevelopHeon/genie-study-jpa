@@ -42,7 +42,7 @@ public class AlbumCustomRepositoryImpl implements AlbumCustomRepository{
     }
 
     @Override
-    public Optional<Album> findByAlbumWithTrack(Long id) {
+    public Optional<Album> findAlbumAndTracks(Long id) {
         Album query = jpaQueryFactory.selectFrom(album)
                 .innerJoin(album.artist, artist)
                 .fetchJoin()

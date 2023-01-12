@@ -79,6 +79,14 @@ public class AlbumTest extends BaseTest {
     }
 
     @Test
+    @DisplayName("없는 앨범 조회")
+    void get_not_found() throws Exception {
+        mockMvc.perform(get("/api/albums/{id}", 14523L))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     @DisplayName("앨범 전체 조회")
     void get_page() throws Exception {
 
@@ -96,6 +104,7 @@ public class AlbumTest extends BaseTest {
     @Test
     @DisplayName("앨범 수정")
     void modify_album() throws Exception {
+
         List<Modify.SoundTrack> soundTracks = new ArrayList<>();
 
         for (int i = 1; i < 5; i++) {

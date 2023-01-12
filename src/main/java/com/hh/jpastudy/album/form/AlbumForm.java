@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -38,6 +39,7 @@ public class AlbumForm {
         public static class Add {
 
             @Valid
+            @NotNull
             private Artist artist;
 
             @NotBlank
@@ -78,6 +80,7 @@ public class AlbumForm {
             public static class SoundTrack {
 
                 @NotNull
+                @Min(1)
                 private int orderNo;
 
                 @NotBlank
@@ -85,6 +88,7 @@ public class AlbumForm {
                 private String title;
 
                 @NotBlank
+                @Length(max = 10)
                 private String playTime;
 
                 @NotNull
@@ -102,6 +106,7 @@ public class AlbumForm {
         public static class Modify {
 
             @Valid
+            @NotNull
             private Artist artist;
 
             @NotBlank
@@ -149,9 +154,11 @@ public class AlbumForm {
                 private String title;
 
                 @NotBlank
+                @Length(max = 10)
                 private String playTime;
 
                 @NotNull
+                @Min(1)
                 private Boolean exposure;
 
             }

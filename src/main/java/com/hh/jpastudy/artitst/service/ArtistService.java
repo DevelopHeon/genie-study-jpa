@@ -2,11 +2,11 @@ package com.hh.jpastudy.artitst.service;
 
 import com.hh.jpastudy.album.repository.AlbumRepository;
 import com.hh.jpastudy.artitst.entity.Artist;
-import com.hh.jpastudy.artitst.exception.AlbumExistException;
 import com.hh.jpastudy.artitst.form.ArtistForm.Request.Find;
 import com.hh.jpastudy.artitst.repository.ArtistRepository;
 import com.hh.jpastudy.common.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -49,14 +49,10 @@ public class ArtistService {
 
     public void remove(Long id) {
         get(id);
-        existAlbum(id);
+        if (albumRepository.existsByArtistId(id)) {
+            throw new DataIntegrityViolationException("아티스트의 앨범이 존재하여 삭제할 수 없습니다..");
+        }
         artistRepository.deleteById(id);
     }
 
-    private void existAlbum(Long id) {
-        Long artistCount = albumRepository.artistByAlbumExist(id);
-        if (artistCount > 0) {
-            throw new AlbumExistException("아티스트의 앨범이 존재합니다.");
-        }
-    }
 }
