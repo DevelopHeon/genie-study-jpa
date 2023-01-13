@@ -38,8 +38,9 @@ public class ArtistService {
                 .orElseThrow(() -> new ResourceNotFoundException("아티스트를 찾을 수 없습니다."));
     }
 
-    public Artist add(Artist artist) {
-        return artistRepository.save(artist);
+    public Long add(Artist artist) {
+        artistRepository.save(artist);
+        return artist.getId();
     }
 
     public Long modify(Artist artist) {

@@ -40,8 +40,8 @@ public class AlbumController {
     }
 
     @PostMapping("/albums")
-    public FindOne add(@Valid @RequestBody Add add) {
-        return mapper.toFindOne(albumService.add(mapper.toAlbum(add)));
+    public Long add(@Valid @RequestBody Add add) {
+        return albumService.add(mapper.toAlbum(add));
     }
 
     @PutMapping("/albums/{id}")

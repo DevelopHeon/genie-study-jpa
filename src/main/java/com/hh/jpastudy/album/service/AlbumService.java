@@ -10,8 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-
 
 /**
  * @since       2023.01.09
@@ -24,8 +22,10 @@ import java.time.LocalDate;
 public class AlbumService {
 
     private final AlbumRepository albumRepository;
-    public Album add(Album album) {
-        return albumRepository.save(album);
+
+    public Long add(Album album) {
+        albumRepository.save(album);
+        return album.getId();
     }
     @Transactional(readOnly = true)
     public Album get(Long id) {

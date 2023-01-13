@@ -41,8 +41,8 @@ public class AlbumTest extends BaseTest {
 
     @BeforeEach
     public void setUp() {
-        artistId = artistService.add(artist()).getId();
-        id = albumService.add(album(artistId)).getId();
+        artistId = artistService.add(artist());
+        id = albumService.add(album(artistId));
     }
 
     @Test
@@ -95,6 +95,7 @@ public class AlbumTest extends BaseTest {
         }
 
         mockMvc.perform(get("/api/albums")
+                        .queryParam("")
                         .queryParam("size", "5")
                         .queryParam("page", "0"))
                 .andDo(print())

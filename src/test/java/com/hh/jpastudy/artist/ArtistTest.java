@@ -42,7 +42,7 @@ public class ArtistTest extends BaseTest {
 
     @BeforeEach
     public void setUp() {
-        id = artistService.add(artist()).getId();
+        id = artistService.add(artist());
     }
 
     @Test

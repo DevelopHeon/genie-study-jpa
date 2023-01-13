@@ -38,8 +38,8 @@ public class ArtistController {
     }
 
     @PostMapping("/artists")
-    public FindOne add(@Valid @RequestBody Add add) {
-        return mapper.toFindOne(artistService.add(mapper.toArtist(add)));
+    public Long add(@Valid @RequestBody Add add) {
+        return artistService.add(mapper.toArtist(add));
     }
 
     @PutMapping("/artists/{id}")
