@@ -1,8 +1,7 @@
 package com.hh.jpastudy.common.exception;
 
-import com.hh.jpastudy.artitst.exception.ArtistByAlbumExist;
+import com.hh.jpastudy.artitst.exception.ArtistByAlbumExistException;
 import com.hh.jpastudy.common.exception.ExceptionForm.ErrorResponse;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -29,13 +28,15 @@ public class ExceptionsHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 
-    @ExceptionHandler(ArtistByAlbumExist.class)
-    protected ResponseEntity<?> handleArtistByAlbumExist(ArtistByAlbumExist e) {
+    @ExceptionHandler(ArtistByAlbumExistException.class)
+    protected ResponseEntity<?> handleArtistByAlbumExist(ArtistByAlbumExistException e) {
+
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     protected ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+
         List<ErrorResponse> errors = e.getFieldErrors().stream()
                 .map(error -> new ErrorResponse(error.getField(), error.getDefaultMessage()))
                 .collect(Collectors.toList());

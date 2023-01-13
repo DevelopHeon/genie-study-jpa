@@ -24,23 +24,30 @@ public class AlbumService {
     private final AlbumRepository albumRepository;
 
     public Long add(Album album) {
+
         albumRepository.save(album);
         return album.getId();
     }
+
     @Transactional(readOnly = true)
     public Album get(Long id) {
+
         return albumRepository.findAlbumAndTracks(id)
                 .orElseThrow(() -> new ResourceNotFoundException("앨범이 존재하지 않습니다."));
     }
+
     @Transactional(readOnly = true)
     public Page<Album> getAll(Find find, Pageable pageable) {
         return albumRepository.findAll(find, pageable);
     }
+
     public Long modify(Album album) {
+
         get(album.getId());
         albumRepository.save(album);
         return album.getId();
     }
+
     public void remove(Long id) {
         get(id);
         albumRepository.deleteById(id);

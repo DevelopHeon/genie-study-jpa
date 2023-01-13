@@ -29,10 +29,11 @@ public class AlbumCustomRepositoryImpl implements AlbumCustomRepository{
 
     @Override
     public Page<Album> findAll(Find find, Pageable pageable) {
+
         List<Album> query = jpaQueryFactory.selectFrom(album)
                 .innerJoin(album.artist, artist)
                 .fetchJoin()
-                .where(eqName(find))
+                .where(containsTitle(find.getTitle()))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .orderBy(album.id.desc())
@@ -43,6 +44,7 @@ public class AlbumCustomRepositoryImpl implements AlbumCustomRepository{
 
     @Override
     public Optional<Album> findAlbumAndTracks(Long id) {
+
         Album query = jpaQueryFactory.selectFrom(album)
                 .innerJoin(album.artist, artist)
                 .fetchJoin()
@@ -55,10 +57,12 @@ public class AlbumCustomRepositoryImpl implements AlbumCustomRepository{
         return Optional.ofNullable(query);
     }
 
-    private BooleanExpression eqName(Find find) {
-        if (StringUtils.hasText(find.getTitle())) {
-            return album.title.contains(find.getTitle());
+    private BooleanExpression containsTitle(String title) {
+
+        if (StringUtils.hasText(title)) {
+            return album.title.contains(title);
         }
+
         return null;
     }
 }

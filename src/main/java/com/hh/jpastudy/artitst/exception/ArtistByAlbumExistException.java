@@ -4,8 +4,8 @@ package com.hh.jpastudy.artitst.exception;
  * @author      sony
  * @description resource not found exception
  **********************************************************************************************************************/
-public class ArtistByAlbumExist extends RuntimeException{
-    public ArtistByAlbumExist(String message) {
+public class ArtistByAlbumExistException extends RuntimeException{
+    public ArtistByAlbumExistException(String message) {
         super(message);
     }
 }

@@ -28,7 +28,7 @@ public class Album extends Base {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "artist_id")
+    @JoinColumn(name = "artist_id", nullable = false)
     private Artist artist;
 
     @Column(length = 100, nullable = false)
@@ -43,7 +43,7 @@ public class Album extends Base {
     @Column(length = 1000)
     private String description;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "sound_track"
             , joinColumns = @JoinColumn(name = "album_id")
     )

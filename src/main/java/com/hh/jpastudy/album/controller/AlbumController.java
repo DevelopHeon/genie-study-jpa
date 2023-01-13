@@ -30,7 +30,7 @@ public class AlbumController {
     private final AlbumService albumService;
 
     @GetMapping("/albums")
-    public Page<FindAll> getAll(Find find, Pageable pageable) {
+    public Page<FindAll> getAll(@Valid Find find, Pageable pageable) {
         return albumService.getAll(find, pageable).map(mapper::toFindAll);
     }
 

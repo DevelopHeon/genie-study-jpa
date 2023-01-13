@@ -26,19 +26,21 @@ public class ArtistCustomRepositoryImpl implements ArtistCustomRepository{
 
     @Override
     public Page<Artist> findAll(Find find, Pageable pageable) {
+
         List<Artist> query = jpaQueryFactory.selectFrom(artist)
-                .where(eqName(find))
-                .orderBy(artist.id.desc())
+                .where(containsName(find.getName()))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
+                .orderBy(artist.id.desc())
                 .fetch();
 
         return new PageImpl<>(query, pageable, query.stream().count());
     }
 
-    private BooleanExpression eqName(Find find) {
-        if (StringUtils.hasText(find.getName())){
-            return artist.name.contains(find.getName());
+    private BooleanExpression containsName(String name) {
+
+        if (StringUtils.hasText(name)){
+            return artist.name.contains(name);
         }
         return null;
     }

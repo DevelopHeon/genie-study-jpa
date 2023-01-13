@@ -2,12 +2,11 @@ package com.hh.jpastudy.artitst.service;
 
 import com.hh.jpastudy.album.repository.AlbumRepository;
 import com.hh.jpastudy.artitst.entity.Artist;
-import com.hh.jpastudy.artitst.exception.ArtistByAlbumExist;
+import com.hh.jpastudy.artitst.exception.ArtistByAlbumExistException;
 import com.hh.jpastudy.artitst.form.ArtistForm.Request.Find;
 import com.hh.jpastudy.artitst.repository.ArtistRepository;
 import com.hh.jpastudy.common.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -29,30 +28,35 @@ public class ArtistService {
 
     @Transactional(readOnly = true)
     public Page<Artist> getAll(Find find, Pageable pageable) {
+
         return artistRepository.findAll(find, pageable);
     }
 
     @Transactional(readOnly = true)
     public Artist get(Long id) {
+
         return artistRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("아티스트를 찾을 수 없습니다."));
     }
 
     public Long add(Artist artist) {
+
         artistRepository.save(artist);
         return artist.getId();
     }
 
     public Long modify(Artist artist) {
+
         get(artist.getId());
         artistRepository.save(artist);
         return artist.getId();
     }
 
     public void remove(Long id) {
+
         get(id);
         if (albumRepository.existsByArtistId(id)) {
-            throw new ArtistByAlbumExist("아티스트의 앨범이 존재하여 삭제할 수 없습니다.");
+            throw new ArtistByAlbumExistException("아티스트의 앨범이 존재하여 삭제할 수 없습니다.");
         }
         artistRepository.deleteById(id);
     }
