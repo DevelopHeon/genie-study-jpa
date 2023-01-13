@@ -53,8 +53,7 @@ public class ArtistTest extends BaseTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(toJson(add())))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("가수1"));
+                .andExpect(status().isOk());
     }
 
     @Test

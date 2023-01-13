@@ -95,7 +95,7 @@ public class AlbumTest extends BaseTest {
         }
 
         mockMvc.perform(get("/api/albums")
-                        .queryParam("")
+                        .queryParam("title", "앨범")
                         .queryParam("size", "5")
                         .queryParam("page", "0"))
                 .andDo(print())
